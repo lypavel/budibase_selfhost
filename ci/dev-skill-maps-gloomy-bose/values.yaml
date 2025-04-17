@@ -1,0 +1,25 @@
+ingress:
+  enabled: false  # отключаем ingress, так как в кластере он уже настроен
+
+
+couchdb:
+  createAdminSecret: true
+  adminUsername: "<couchdb_admin_username>"
+  adminPassword: "<couchdb_admin_password>"
+  cookieAuthSecret: "couchdb_cookie_secret"
+  erlangCookie: "couchdb_erlang_cookie"
+  persistentVolume:  # включаем персистентное хранилище для couchdb
+    enabled: true
+    size: '1Gi'  # объём хранилища
+
+services:
+  objectStore:
+    minio: false  # отключаем minio, так как используется Object Storage
+    accessKey: "<bucket_access_key>"
+    secretKey: "<bucket_secret_key>"
+    url: "<bucket_host>/<bucket_name>/"
+  redis:
+    enabled: false  # отключаем redis, так как он уже настроен извне
+    port: <redis_port>
+    url: "<redis_service_name>"
+    password: "<redis_password>"
