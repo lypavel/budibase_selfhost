@@ -113,6 +113,24 @@ kubectl delete pvc database-storage-budibase-couchdb-0 -n dev-skill-maps-gloomy-
 
 **После удаления персистентного хранилища необходимо обязательно очистить кэш в Redis, иначе после установки budibase не предложит создать суперпользователя.**
 
+Подключитесь к поду с Redis:
+
+```sh
+kubectl exec -n dev-skill-maps-gloomy-bose -it <redis-cache-pod-name> -- bash
+```
+
+Подключитесь к Redis:
+
+```sh
+redis-cli -a <redis_password>
+```
+
+Очистите кэш:
+
+```sh
+FLUSHDB
+```
+
 TODO:
 
 Обновление образа Budibase(?)
